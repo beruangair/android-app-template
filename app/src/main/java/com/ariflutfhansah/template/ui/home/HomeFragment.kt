@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.ariflutfhansah.template.R
+import com.ariflutfhansah.template.databinding.ActivityMainBinding
 import com.ariflutfhansah.template.databinding.FragmentHomeBinding
+import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.android.material.carousel.CarouselSnapHelper
 
 class HomeFragment : Fragment() {
 
@@ -28,10 +32,20 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.layoutManager = CarouselLayoutManager()
+        CarouselSnapHelper().attachToRecyclerView(binding.recyclerView)
+
+        val imageList = mutableListOf<Int>()
+        imageList.add(R.drawable.one)
+        imageList.add(R.drawable.two)
+        imageList.add(R.drawable.three)
+        imageList.add(R.drawable.four)
+        imageList.add(R.drawable.five)
+
+        val adapter = CarouselAdapter(imageList)
+        binding.recyclerView.adapter = adapter
+
         return root
     }
 
