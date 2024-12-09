@@ -14,5 +14,8 @@
         <item name="android:windowLightStatusBar">false</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">#FFFFFF</item>
+        <!-- Navigation Bar Color -->
+        <item name="android:windowBackground">@color/black</item>
+        <item name="android:activatedBackgroundIndicator">@color/bottom_navigation_active_indicator</item>
     </style>
 </resources>

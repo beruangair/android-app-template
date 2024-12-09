@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ariflutfhansah.template.R
@@ -45,6 +46,15 @@ class HomeFragment : Fragment() {
 
         val adapter = CarouselAdapter(imageList)
         binding.recyclerView.adapter = adapter
+
+        // ListView
+        val listView = _binding!!.listView
+        val data = listOf("Item 1", "Item 2", "Item 3", "Item 4")
+
+        val arrayAdapter : ArrayAdapter<String> = ArrayAdapter<String>(
+            requireActivity(),android.R.layout.simple_list_item_1, data
+        )
+        listView.adapter = arrayAdapter
 
         return root
     }
