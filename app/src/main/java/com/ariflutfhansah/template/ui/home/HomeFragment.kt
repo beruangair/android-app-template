@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ariflutfhansah.template.R
@@ -55,6 +56,11 @@ class HomeFragment : Fragment() {
             requireActivity(),android.R.layout.simple_list_item_1, data
         )
         listView.adapter = arrayAdapter
+
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val selectedItem = data[position]
+            Toast.makeText(requireContext(), "Anda memilih: $selectedItem", Toast.LENGTH_SHORT).show()
+        }
 
         return root
     }
