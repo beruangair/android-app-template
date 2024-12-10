@@ -9,11 +9,14 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.ariflutfhansah.template.R
 import com.ariflutfhansah.template.databinding.ActivityMainBinding
 import com.ariflutfhansah.template.databinding.FragmentHomeBinding
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 class HomeFragment : Fragment() {
 
@@ -22,6 +25,9 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var adapter: CarouselAdapter
+    private val slideInterval = 100L // Interval antar slide dalam milidetik
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,9 +40,10 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager = CarouselLayoutManager()
-        CarouselSnapHelper().attachToRecyclerView(binding.recyclerView)
+        // --- Carousel --- //
+        binding.carousel.setHasFixedSize(true)
+        binding.carousel.layoutManager = CarouselLayoutManager()
+        CarouselSnapHelper().attachToRecyclerView(binding.carousel)
 
         val imageList = mutableListOf<Int>()
         imageList.add(R.drawable.one)
@@ -46,9 +53,11 @@ class HomeFragment : Fragment() {
         imageList.add(R.drawable.five)
 
         val adapter = CarouselAdapter(imageList)
-        binding.recyclerView.adapter = adapter
+        binding.carousel.adapter = adapter
+        startAutoSlide()
+        // --- End of Carousel --- //
 
-        // ListView
+        // --- ListView --- //
         val listView = _binding!!.listView
         val data = listOf("Item 1", "Item 2", "Item 3", "Item 4")
 
@@ -61,8 +70,25 @@ class HomeFragment : Fragment() {
             val selectedItem = data[position]
             Toast.makeText(requireContext(), "Anda memilih: $selectedItem", Toast.LENGTH_SHORT).show()
         }
+        // --- End of ListView --- //
 
         return root
+    }
+
+    private fun startAutoSlide() {
+        lifecycleScope.launch {
+            var currentIndex = 0
+            while (true) {
+                delay(slideInterval)
+                if (::adapter.isInitialized) { // Periksa apakah adapter telah diinisialisasi
+                    if (currentIndex >= adapter.itemCount) {
+                        currentIndex = 0 // Kembali ke item pertama
+                    }
+                    binding.carousel.smoothScrollToPosition(currentIndex)
+                    currentIndex++
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

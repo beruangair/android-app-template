@@ -6,4 +6,6 @@
 
     <string name="brand_name">Masakpedia</string>
     <string name="theme_mode">Theme Mode</string>
+    <string name="section1">List Masakan</string>
+    <string name="lihat_semua">Lihat Semua</string>
 </resources>
