@@ -13,7 +13,7 @@
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Navigation Bar Color -->
-        <item name="android:windowBackground">@color/bottom_navigation_background</item>
+        <item name="android:windowBackground">@color/white</item>
         <item name="itemIconTint">@color/bottom_navigation_active_indicator</item>
     </style>
 </resources>
