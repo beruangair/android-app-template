@@ -12,6 +12,7 @@ import com.caverock.androidsvg.SVG
 import com.caverock.androidsvg.SVGImageView
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
+import com.ariflutfhansah.template.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 

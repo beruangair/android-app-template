@@ -6,13 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <!--<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/carousel"
         android:layout_width="0dp"
         android:layout_height="160dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" /> -->
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:tabGravity="fill"
+        app:tabMode="fixed" />
 
     <TextView
         android:id="@+id/title_list_masakan"
@@ -21,7 +37,7 @@
         android:layout_marginStart="16dp"
         app:layout_constraintEnd_toStartOf="@+id/more_list_masakan"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carousel"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager"
         android:text="@string/section1"
         android:textSize="20sp"
         android:textStyle="bold"/>
@@ -33,7 +49,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/title_list_masakan"
-        app:layout_constraintTop_toBottomOf="@+id/carousel"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager"
         android:text="@string/lihat_semua"
         android:textSize="14sp"/>
 
