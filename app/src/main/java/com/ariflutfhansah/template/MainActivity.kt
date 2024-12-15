@@ -45,11 +45,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         // Memanggil Image SVG
-        val logoApp: SVGImageView = findViewById(R.id.logo_app)
         val theme_select: SVGImageView = findViewById(R.id.theme_select)
-
-        val svg1: SVG = SVG.getFromResource(resources, R.raw.icon_masakpedia)
-        logoApp.setSVG(svg1)
 
         val svg2: SVG = SVG.getFromResource(resources, R.raw.theme_light)
         theme_select.setSVG(svg2)

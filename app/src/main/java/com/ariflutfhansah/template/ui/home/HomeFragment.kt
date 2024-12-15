@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
     private val slideInterval = 3000L
     private lateinit var viewPager: ViewPager2
     private lateinit var adapter: SliderAdapter
-    private var currentPage = 0
+    private var currentPage = 1
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var runnable: Runnable
 
@@ -54,18 +54,13 @@ class HomeFragment : Fragment() {
 
         // Slider
         viewPager = binding.viewPager // Gunakan properti kelas
-        val tabLayout: TabLayout = binding.tabLayout
         val sliderItems = listOf(
+            SliderItem(R.drawable.image2, "Title 2"),
             SliderItem(R.drawable.image1, "Title 1"),
             SliderItem(R.drawable.image2, "Title 2")
         )
         adapter = SliderAdapter(sliderItems) // Gunakan properti kelas
         viewPager.adapter = adapter
-
-        // Menghubungkan TabLayout dengan ViewPager2
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = "Page ${position + 1}" // Menampilkan nomor halaman di tab
-        }.attach()
 
         // Mulai auto slide
         startAutoSlide()
@@ -91,7 +86,7 @@ class HomeFragment : Fragment() {
     private fun startAutoSlide() {
         runnable = Runnable {
             if (currentPage == adapter.itemCount) {
-                currentPage = 0
+                currentPage = 1
             }
             viewPager.setCurrentItem(currentPage++, true)
             handler.postDelayed(runnable, 3000) // Ganti slide setiap 3 detik

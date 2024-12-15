@@ -19,16 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.caverock.androidsvg.SVGImageView
-                android:id="@+id/logo_app"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:contentDescription="@string/brand_name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@raw/icon_masakpedia"/>
-
             <TextView
                 style="@style/Theme.Template"
                 android:id="@+id/app_name"
@@ -39,7 +29,7 @@
                 android:textSize="20sp"
                 android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/logo_app"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <com.caverock.androidsvg.SVGImageView
